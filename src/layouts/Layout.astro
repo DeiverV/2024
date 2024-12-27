@@ -24,7 +24,7 @@ const { title, showFigures = true } = Astro.props;
     <main>
       <slot />
       
-      <a href="https://www.instagram.com/deiver.verano" target="_blank" class="absolute text-white bottom-5 right-5 font-extralight flex gap-2 items-center text-sm">
+      <a href="https://www.instagram.com/deiver.verano" target="_blank" class="absolute text-white top-5 sm:bottom-5 sm:top-auto right-5 font-extralight flex gap-2 items-center text-sm">
         <FaInstagram />
           Deiber Verano.
       </a>
@@ -32,8 +32,8 @@ const { title, showFigures = true } = Astro.props;
 
     {
       showFigures && (
-        <figure class="w-[2px] h-[20%] absolute left-10 top-0 bg-white"/>
-        <figure class="w-[2px] h-[16%] absolute left-14 top-0 bg-white"/>
+        <figure class="w-[2px] h-[14%] sm:h-[20%] absolute left-10 top-0 bg-white"/>
+        <figure class="w-[2px] h-[10%] sm:h-[16%] absolute left-14 top-0 bg-white"/>
         
         <figure class="w-[20%] h-[2px] absolute left-0 bottom-10 bg-white"/>
         <figure class="w-[25%] h-[2px] absolute left-0 bottom-14 bg-white"/>

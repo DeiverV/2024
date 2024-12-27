@@ -46,15 +46,15 @@ const currentPoem = POEMS[poemIndex] ?? POEMS[0];
         transition:animate="initial"
         class="flex gap-2 items-center hover:bg-slate-950 w-fit px-2 rounded-md duration-150"
       >
-        <MdKeyboardDoubleArrowLeft size={24} />
+        <MdKeyboardDoubleArrowLeft size={32} />
       </a>
-      <small>{poemIndex + 1}/{POEMS.length}</small>
+      <small class="text-base">{poemIndex + 1}/{POEMS.length}</small>
       <a
         href={`/poem/${poemIndex < POEMS.length - 1 ? poemIndex + 2 : 1}`}
         transition:animate="initial"
         class="flex gap-2 items-center hover:bg-slate-950 w-fit px-2 rounded-md duration-150"
       >
-        <MdKeyboardDoubleArrowRight size={24} />
+        <MdKeyboardDoubleArrowRight size={32} />
       </a>
     </div>
   </div>

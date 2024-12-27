@@ -1,0 +1,61 @@
+---
+import {
+  MdKeyboardDoubleArrowLeft,
+  MdKeyboardDoubleArrowRight,
+} from "react-icons/md";
+import Layout from "../../layouts/Layout.astro";
+import { POEMS } from "./data/poems";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (async () => {
+  const pages = POEMS.map((_, index) => ({
+    params: { poemId: String(index + 1) },
+  }));
+
+  return pages;
+}) satisfies GetStaticPaths;
+
+const { poemId } = Astro.params;
+const poemIndex = parseInt(poemId, 10) - 1;
+const currentPoem = POEMS[poemIndex] ?? POEMS[0];
+---
+
+<Layout title="2024 | Verano">
+  <div class="grid place-items-center min-h-screen py-10">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold px-10">{currentPoem.title}</h1>
+      <p>{currentPoem.date}</p>
+    </div>
+    <div
+      transition:animate="initial"
+      class="w-[90%] sm:w-[350px] md:w-[500px] px-10 grid gap-2 max-h-[400px] overflow-x-auto"
+    >
+      {
+        currentPoem.lines.map((line) => {
+          if (line === "") {
+            return <br />;
+          }
+          return <p>{line}</p>;
+        })
+      }
+    </div>
+
+    <div class="flex gap-2 items-center">
+      <a
+        href={`/poem/${poemIndex > 0 ? poemIndex : POEMS.length}`}
+        transition:animate="initial"
+        class="flex gap-2 items-center hover:bg-slate-950 w-fit px-2 rounded-md duration-150"
+      >
+        <MdKeyboardDoubleArrowLeft size={24} />
+      </a>
+      <small>{poemIndex + 1}/{POEMS.length}</small>
+      <a
+        href={`/poem/${poemIndex < POEMS.length - 1 ? poemIndex + 2 : 1}`}
+        transition:animate="initial"
+        class="flex gap-2 items-center hover:bg-slate-950 w-fit px-2 rounded-md duration-150"
+      >
+        <MdKeyboardDoubleArrowRight size={24} />
+      </a>
+    </div>
+  </div>
+</Layout>

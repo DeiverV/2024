@@ -1,22 +1,77 @@
+---
+import "@fontsource/poppins/400.css";
+import { ClientRouter } from 'astro:transitions';
+import { FaInstagram } from "react-icons/fa";
+interface Props {
+  title: string;
+  showFigures?: boolean;
+}
+
+const { title, showFigures = true } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ClientRouter/>
+  </head>
+  <body class="bg-black overflow-hidden">
+    <main>
+      <slot />
+      
+      <a href="https://www.instagram.com/deiver.verano" target="_blank" class="absolute text-white bottom-5 right-5 font-extralight flex gap-2 items-center text-sm">
+        <FaInstagram />
+          Deiber Verano.
+      </a>
+    </main>
+
+    {
+      showFigures && (
+        <figure class="w-[2px] h-[20%] absolute left-10 top-0 bg-white"/>
+        <figure class="w-[2px] h-[16%] absolute left-14 top-0 bg-white"/>
+        
+        <figure class="w-[20%] h-[2px] absolute left-0 bottom-10 bg-white"/>
+        <figure class="w-[25%] h-[2px] absolute left-0 bottom-14 bg-white"/>
+        
+        <figure
+        class="hidden md:block w-[400px] h-[400px] rounded-full absolute -right-[180px] -top-[150px] border-white border-2"
+        />
+      )
+    }
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  ::-webkit-scrollbar:hover {
+    cursor: pointer;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: none;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #2b2828c5;
+    outline: 0;
+    border-radius: 20px;
+  }
+  * {
+    font-family: "Poppins", sans-serif;
+  }
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+  }
 </style>
